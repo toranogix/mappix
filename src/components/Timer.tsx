@@ -1,0 +1,21 @@
+import type { CSSProperties } from 'react'
+
+type Props = {
+  remainingMs: number
+  totalMs: number
+}
+
+export default function Timer({ remainingMs, totalMs }: Props) {
+  const seconds = Math.ceil(remainingMs / 1000)
+  const ratio = Math.max(0, remainingMs / totalMs)
+  const urgent = seconds <= 10
+
+  return (
+    <div className={`timer ${urgent ? 'timer--urgent' : ''}`} aria-live="polite">
+      <div className="timer-ring" style={{ '--ratio': ratio } as CSSProperties}>
+        <span className="timer-value">{seconds}s</span>
+      </div>
+      <span className="timer-label">Temps restant</span>
+    </div>
+  )
+}
