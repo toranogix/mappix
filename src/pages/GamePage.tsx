@@ -5,17 +5,19 @@ import GuessInput from '../components/GuessInput'
 import ScoreBoard from '../components/ScoreBoard'
 import Timer from '../components/Timer'
 import { COUNTRIES } from '../data/countries'
-import {getFeatureById, loadCountryFeatures, pickRandomCountryId, silhouettePath, type CountryFeature} from '../lib/geo'
+import {getFeatureById, loadCountryFeatures, pickRandomCountryId, mapPath, type CountryFeature} from '../lib/geo'
+import { useLocale } from '../lib/LocaleContext'
 import { GAME_DURATION_MS } from '../lib/scoring'
 import { getStoredPlayerName, saveGameResult } from '../lib/storage'
 import { gradeAnswers, type RoundAnswer } from '../lib/tally'
 
 export default function GamePage() {
   const navigate = useNavigate()
+  const { locale, t } = useLocale()
   const playerName = getStoredPlayerName()
 
   const [features, setFeatures] = useState<CountryFeature[] | null>(null)
-  const [loadError, setLoadError] = useState('')
+  const [loadError, setLoadError] = useState<'empty' | string>('')
   const [currentId, setCurrentId] = useState<string | null>(null)
   const [guess, setGuess] = useState('')
   const [answered, setAnswered] = useState(0)
@@ -38,7 +40,6 @@ export default function GamePage() {
     if (endedRef.current) return
     endedRef.current = true
 
-    // Lock in whatever is typed on the current country when time runs out
     const id = currentIdRef.current
     const pending = guessRef.current.trim()
     if (id) {
@@ -116,7 +117,7 @@ export default function GamePage() {
         setFeatures(list)
         const first = pickRandomCountryId(pool, new Set())
         if (!first || !getFeatureById(list, first)) {
-          setLoadError('Aucun pays jouable trouvé.')
+          setLoadError('empty')
           return
         }
         currentIdRef.current = first
@@ -154,20 +155,19 @@ export default function GamePage() {
   }
 
   const feature = features && currentId ? getFeatureById(features, currentId) : undefined
-  const path = feature
-    ? silhouettePath(feature, MAP_WIDTH, MAP_HEIGHT)
-    : ''
+  const path = feature ? mapPath(feature, MAP_WIDTH, MAP_HEIGHT) : ''
 
   return (
-    <main className="page game">
+    <main className="page game" lang={locale}>
       <header className="game-header">
         <Timer remainingMs={remainingMs} totalMs={GAME_DURATION_MS} />
         <ScoreBoard answered={answered} skipped={skipped} />
       </header>
 
-      {loadError && <p className="form-error">{loadError}</p>}
+      {loadError === 'empty' && <p className="form-error">{t.game.noCountries}</p>}
+      {loadError && loadError !== 'empty' && <p className="form-error">{loadError}</p>}
 
-      {!features && !loadError && <p className="game-loading">Chargement des cartes…</p>}
+      {!features && !loadError && <p className="game-loading">{t.game.loading}</p>}
 
       {features && path && (
         <>

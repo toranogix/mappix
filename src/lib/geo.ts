@@ -1,4 +1,4 @@
-import { geoEquirectangular, geoPath } from 'd3-geo'
+import { geoMercator, geoPath } from 'd3-geo'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
 import { PLAYABLE_IDS } from '../data/countries'
 
@@ -37,7 +37,7 @@ function resolveIso2(props: CountryProps | null | undefined): string | null {
 export async function loadCountryFeatures(): Promise<CountryFeature[]> {
   if (cachedFeatures) return cachedFeatures
 
-  const res = await fetch('/countries.geojson')
+  const res = await fetch('countries/countries.geojson')
   if (!res.ok) throw new Error('Impossible de charger les contours des pays')
 
   const collection = (await res.json()) as FeatureCollection<Geometry, CountryProps>
@@ -69,13 +69,13 @@ export function getFeatureById(
 
 
 // Build an SVG path fitted to the viewBox
-export function silhouettePath(
+export function mapPath(
   country: CountryFeature,
   width = 400,
   height = 350,
   padding = 28,
 ): string {
-  const projection = geoEquirectangular().fitExtent(
+  const projection = geoMercator().fitExtent(
     [
       [padding, padding],
       [width - padding, height - padding],

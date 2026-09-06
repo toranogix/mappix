@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useLocale } from '../lib/LocaleContext'
 
 type Props = {
   remainingMs: number
@@ -6,6 +7,7 @@ type Props = {
 }
 
 export default function Timer({ remainingMs, totalMs }: Props) {
+  const { t } = useLocale()
   const seconds = Math.ceil(remainingMs / 1000)
   const ratio = Math.max(0, remainingMs / totalMs)
   const urgent = seconds <= 10
@@ -15,7 +17,7 @@ export default function Timer({ remainingMs, totalMs }: Props) {
       <div className="timer-ring" style={{ '--ratio': ratio } as CSSProperties}>
         <span className="timer-value">{seconds}s</span>
       </div>
-      <span className="timer-label">Temps restant</span>
+      <span className="timer-label">{t.game.timeLeft}</span>
     </div>
   )
 }

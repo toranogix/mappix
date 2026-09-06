@@ -1,4 +1,5 @@
 import { useEffect, useRef, type SubmitEvent } from 'react'
+import { useLocale } from '../lib/LocaleContext'
 
 type Props = {
   value: string
@@ -8,7 +9,8 @@ type Props = {
   disabled?: boolean
 }
 
-export default function GuessInput({value, onChange, onSubmit, onSkip,disabled}: Props) {
+export default function GuessInput({ value, onChange, onSubmit, onSkip, disabled }: Props) {
+  const { t } = useLocale()
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function GuessInput({value, onChange, onSubmit, onSkip,disabled}:
     <div className="guess-panel">
       <form className="guess-form" onSubmit={handleSubmit}>
         <div className="field">
-          <label htmlFor="guess">Nom du pays</label>
+          <label htmlFor="guess">{t.game.countryLabel}</label>
           <input
             ref={inputRef}
             id="guess"
@@ -32,7 +34,7 @@ export default function GuessInput({value, onChange, onSubmit, onSkip,disabled}:
             autoComplete="off"
             autoCorrect="off"
             spellCheck={false}
-            placeholder="Tape un nom, Entrée pour confirmer…"
+            placeholder={t.game.countryPlaceholder}
             value={value}
             disabled={disabled}
             onChange={(e) => onChange(e.target.value)}
@@ -45,9 +47,9 @@ export default function GuessInput({value, onChange, onSubmit, onSkip,disabled}:
         disabled={disabled}
         onClick={onSkip}
       >
-        Passer
+        {t.game.skip}
       </button>
-      <p className="guess-hint">Les réponses seront comptabilisées à la fin du chrono.</p>
+      <p className="guess-hint">{t.game.hint}</p>
     </div>
   )
 }
