@@ -170,7 +170,7 @@ export default function GamePage() {
       {!features && !loadError && <p className="game-loading">{t.game.loading}</p>}
 
       {features && path && (
-        <>
+        <div className="game-stage">
           <CountryMap path={path} flash={null} animateKey={currentId ?? 'x'} />
           <GuessInput
             value={guess}
@@ -182,7 +182,7 @@ export default function GamePage() {
             onSkip={() => recordAndAdvance(null)}
             disabled={remainingMs <= 0}
           />
-        </>
+        </div>
       )}
     </main>
   )

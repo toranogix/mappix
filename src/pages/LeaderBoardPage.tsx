@@ -77,7 +77,7 @@ export default function LeaderBoardPage() {
         </ol>
       )}
 
-      <div className="result-actions" style={{ marginTop: '2rem' }}>
+      <div className="result-actions leaderboard-actions">
         <Link className="btn btn-primary" to="/">
           {copy.play}
         </Link>

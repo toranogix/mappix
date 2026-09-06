@@ -10,6 +10,8 @@
   --font-body: 'Space Grotesk', system-ui, sans-serif;
   --radius: 12px;
   --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --page-pad-x: clamp(1rem, 4vw, 1.5rem);
+  --touch: 2.75rem;
 }
 
 *,
@@ -18,10 +20,16 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -33,6 +41,7 @@ body {
     var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 button,
@@ -50,16 +59,23 @@ a:hover {
 }
 
 .app-shell {
+  min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  overflow-x: hidden;
 }
 
 .page {
   flex: 1;
   width: min(960px, 100% - 2rem);
   margin-inline: auto;
-  padding: 1.5rem 0 3rem;
+  padding: 1.25rem var(--page-pad-x) 2rem;
+  min-width: 0;
 }
 
 .btn {
@@ -70,8 +86,10 @@ a:hover {
   border: none;
   border-radius: 999px;
   padding: 0.85rem 1.6rem;
+  min-height: var(--touch);
   font-weight: 600;
   cursor: pointer;
+  touch-action: manipulation;
   transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
@@ -127,6 +145,8 @@ a:hover {
   border-radius: var(--radius);
   color: var(--text);
   padding: 0.9rem 1rem;
+  min-height: var(--touch);
+  font-size: 1rem;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -138,4 +158,15 @@ a:hover {
 
 .field input::placeholder {
   color: rgba(252, 255, 252, 0.35);
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .btn {
+    padding-inline: 1.2rem;
+  }
 }

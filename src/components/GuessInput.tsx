@@ -31,6 +31,8 @@ export default function GuessInput({ value, onChange, onSubmit, onSkip, disabled
             ref={inputRef}
             id="guess"
             type="text"
+            inputMode="text"
+            enterKeyHint="go"
             autoComplete="off"
             autoCorrect="off"
             spellCheck={false}
@@ -40,15 +42,15 @@ export default function GuessInput({ value, onChange, onSubmit, onSkip, disabled
             onChange={(e) => onChange(e.target.value)}
           />
         </div>
+        <div className="guess-actions">
+          <button type="submit" className="btn btn-primary" disabled={disabled || !value.trim()}>
+            {t.game.confirm}
+          </button>
+          <button type="button" className="btn btn-ghost" disabled={disabled} onClick={onSkip}>
+            {t.game.skip}
+          </button>
+        </div>
       </form>
-      <button
-        type="button"
-        className="btn btn-ghost guess-skip"
-        disabled={disabled}
-        onClick={onSkip}
-      >
-        {t.game.skip}
-      </button>
       <p className="guess-hint">{t.game.hint}</p>
     </div>
   )
