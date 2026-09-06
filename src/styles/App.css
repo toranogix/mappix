@@ -4,17 +4,17 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  min-height: 0;
+  min-height: 100dvh;
+  padding-block: 3rem;
   position: relative;
 }
 
 .home-glow {
-  position: fixed;
-  top: max(-4rem, -8vw);
-  left: max(-6rem, -12vw);
-  width: min(640px, 85vw);
-  height: min(640px, 85vw);
-  background: radial-gradient(circle, rgba(43, 168, 74, 0.26), transparent 70%);
+  position: absolute;
+  inset: 20% auto auto -10%;
+  width: min(480px, 80vw);
+  height: min(480px, 80vw);
+  background: radial-gradient(circle, rgba(22, 35, 26, 0.068), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }

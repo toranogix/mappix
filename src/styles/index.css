@@ -36,8 +36,8 @@ body {
   margin: 0;
   font-family: var(--font-body);
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36, 130, 50, 0.28), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(43, 168, 74, 0.12), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36, 130, 50, 0.06), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(43, 168, 74, 0.012), transparent 50%),
     var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
