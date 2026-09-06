@@ -19,6 +19,8 @@ const NAME_TO_ISO2: Record<string, string> = {
 
 let cachedFeatures: CountryFeature[] | null = null
 
+
+// Resolve ISO2 code
 function resolveIso2(props: CountryProps | null | undefined): string | null {
   const raw = props?.['ISO3166-1-Alpha-2']
   if (raw && raw !== '-99' && PLAYABLE_IDS.has(raw)) return raw
@@ -30,6 +32,8 @@ function resolveIso2(props: CountryProps | null | undefined): string | null {
   return null
 }
 
+
+// Load country features
 export async function loadCountryFeatures(): Promise<CountryFeature[]> {
   if (cachedFeatures) return cachedFeatures
 
@@ -54,6 +58,8 @@ export async function loadCountryFeatures(): Promise<CountryFeature[]> {
   return list
 }
 
+
+// Get feature by ID
 export function getFeatureById(
   features: CountryFeature[],
   id: string,
@@ -61,7 +67,8 @@ export function getFeatureById(
   return features.find((f) => f.id === id)
 }
 
-/** Build an SVG path fitted to the viewBox. */
+
+// Build an SVG path fitted to the viewBox
 export function silhouettePath(
   country: CountryFeature,
   width = 400,
@@ -78,6 +85,7 @@ export function silhouettePath(
   return geoPath(projection)(country) ?? ''
 }
 
+// Pick a random country ID
 export function pickRandomCountryId(
   pool: string[],
   exclude: Set<string>,
