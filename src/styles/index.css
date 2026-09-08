@@ -1,15 +1,21 @@
 :root {
-  --bg: #040f0f;
-  --bg-secondary: #2d3a3a;
-  --primary: #248232;
-  --accent: #2ba84a;
-  --text: #fcfffc;
-  --text-muted: rgba(252, 255, 252, 0.65);
-  --danger: #e85d4c;
-  --font-display: 'Outfit', system-ui, sans-serif;
-  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --ink: #0d0d0d;
+  --ink-mid: #462809b1;
+  --ink-soft: #0d0d0d;
+  --surface: #cccccc;
+  --bg: #f2f2f2;
+  --bg-secondary: #0d0d0d;
+  --primary: #0d0d0d;
+  --accent: #0d0d0d;
+  --text: #0d0d0d;
+  --text-muted: #0d0d0d;
+  --danger: #a55a52;
+  --border: rgba(46, 28, 9, 0.18);
+  --border-strong: rgba(46, 28, 9, 0.35);
+  --font-display: "Serge Sans", Georgia, serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
   --radius: 12px;
-  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow: 0 12px 40px rgba(46, 28, 9, 0.18);
   --page-pad-x: clamp(1rem, 4vw, 1.5rem);
   --touch: 2.75rem;
 }
@@ -36,8 +42,9 @@ body {
   margin: 0;
   font-family: var(--font-body);
   background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(36, 130, 50, 0.06), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(43, 168, 74, 0.012), transparent 50%),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(41, 29, 5, 0.387), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(72, 57, 12, 0.307), transparent 50%),
+    linear-gradient(to bottom, rgba(41, 29, 5, 0.387), transparent 55%),
     var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -98,14 +105,14 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--primary);
   color: var(--bg);
-  box-shadow: 0 0 0 0 rgba(43, 168, 74, 0.4);
+  box-shadow: 0 0 0 0 rgba(89, 89, 89, 0.25);
 }
 
 .btn-primary:hover {
-  background: #34c456;
-  box-shadow: 0 8px 24px rgba(43, 168, 74, 0.35);
+  background: var(--accent);
+  box-shadow: 0 8px 24px rgba(89, 89, 89, 0.28);
 }
 
 .btn-primary:disabled {
@@ -117,12 +124,12 @@ a:hover {
 .btn-ghost {
   background: transparent;
   color: var(--text);
-  border: 1px solid rgba(252, 255, 252, 0.2);
+  border: 1px solid var(--border);
 }
 
 .btn-ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .field {
@@ -140,8 +147,8 @@ a:hover {
 
 .field input {
   width: 100%;
-  background: var(--bg-secondary);
-  border: 1px solid rgba(252, 255, 252, 0.12);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
   padding: 0.9rem 1rem;
@@ -152,12 +159,12 @@ a:hover {
 }
 
 .field input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(43, 168, 74, 0.2);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(89, 89, 89, 0.15);
 }
 
 .field input::placeholder {
-  color: rgba(252, 255, 252, 0.35);
+  color: var(--ink-soft);
 }
 
 @media (max-width: 480px) {

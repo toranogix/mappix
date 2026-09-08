@@ -14,7 +14,7 @@
   inset: 20% auto auto -10%;
   width: min(480px, 80vw);
   height: min(480px, 80vw);
-  background: radial-gradient(circle, rgba(22, 35, 26, 0.068), transparent 70%);
+  background: radial-gradient(circle, rgba(165, 165, 165, 0.35), transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -41,8 +41,8 @@
   min-height: var(--touch);
   padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(252, 255, 252, 0.2);
-  background: rgba(4, 15, 15, 0.72);
+  border: 1px solid var(--border);
+  background: rgba(242, 242, 242, 0.85);
   color: var(--text-muted);
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -54,12 +54,12 @@
 
 .lang-switch-btn:hover {
   color: var(--text);
-  border-color: rgba(252, 255, 252, 0.4);
+  border-color: var(--border-strong);
 }
 
 .lang-switch-btn.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--primary);
+  border-color: var(--primary);
   color: var(--bg);
 }
 
@@ -67,7 +67,7 @@
   margin: 0 0 0.75rem;
   font-size: 0.85rem;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--primary);
   font-weight: 700;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .home-leaderboard:hover {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .form-error {
@@ -162,8 +162,8 @@
   display: grid;
   place-items: center;
   background: conic-gradient(
-    var(--accent) calc(var(--ratio) * 360deg),
-    rgba(252, 255, 252, 0.12) 0
+    var(--primary) calc(var(--ratio) * 360deg),
+    var(--surface) 0
   );
   position: relative;
 }
@@ -194,7 +194,7 @@
   animation: pulse-urgent 0.8s ease-in-out infinite;
   background: conic-gradient(
     var(--danger) calc(var(--ratio) * 360deg),
-    rgba(252, 255, 252, 0.12) 0
+    var(--surface) 0
   );
 }
 
@@ -219,7 +219,8 @@
 }
 
 .scoreboard-item {
-  background: var(--bg-secondary);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.55rem 0.9rem;
   min-width: 0;
@@ -245,8 +246,8 @@
   width: 100%;
   max-width: min(480px, 100%);
   margin: 0 auto;
-  background: linear-gradient(160deg, rgba(45, 58, 58, 0.9), rgba(4, 15, 15, 0.5));
-  border: 1px solid rgba(252, 255, 252, 0.08);
+  background: linear-gradient(160deg, #cccccc, #a5a5a5);
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 1rem;
   box-shadow: var(--shadow);
@@ -254,8 +255,8 @@
 }
 
 .map-wrap.map--success {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(43, 168, 74, 0.25), var(--shadow);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(89, 89, 89, 0.2), var(--shadow);
 }
 
 .map-wrap.map--error {
@@ -297,10 +298,10 @@
 }
 
 .map-path {
-  fill: var(--accent);
-  stroke: var(--primary);
+  fill: var(--primary);
+  stroke: #f2f2f2;
   stroke-width: 1.2;
-  filter: drop-shadow(0 8px 20px rgba(43, 168, 74, 0.25));
+  filter: drop-shadow(0 8px 20px rgba(89, 89, 89, 0.28));
 }
 
 .guess-form {
@@ -355,7 +356,7 @@
 
 .result-kicker {
   margin: 0 0 0.5rem;
-  color: var(--accent);
+  color: var(--primary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.8rem;
@@ -380,7 +381,8 @@
 }
 
 .result-stat {
-  background: var(--bg-secondary);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1rem 1.4rem;
   min-width: 0;
@@ -425,14 +427,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: var(--bg-secondary);
+  background: #ffffff;
   border-radius: var(--radius);
   padding: 0.7rem 1rem;
-  border: 1px solid rgba(252, 255, 252, 0.06);
+  border: 1px solid var(--border);
 }
 
 .result-review-item.is-correct {
-  border-color: rgba(43, 168, 74, 0.4);
+  border-color: var(--primary);
 }
 
 .result-review-item.is-wrong {
@@ -461,7 +463,7 @@
 }
 
 .result-review-item.is-correct .result-review-pts {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .result-actions {
@@ -525,20 +527,20 @@
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 1rem;
   align-items: center;
-  background: var(--bg-secondary);
+  background: #ffffff;
   border-radius: var(--radius);
   padding: 0.9rem 1.1rem;
-  border: 1px solid rgba(252, 255, 252, 0.06);
+  border: 1px solid var(--border);
 }
 
 .leaderboard-row:nth-child(1) {
-  border-color: rgba(43, 168, 74, 0.45);
+  border-color: var(--primary);
 }
 
 .leaderboard-rank {
   font-family: var(--font-display);
   font-weight: 700;
-  color: var(--accent);
+  color: var(--primary);
   min-width: 2.2rem;
 }
 

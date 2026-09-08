@@ -29,7 +29,6 @@ export default function HomePage() {
     <main className="page home" lang={locale}>
       <div className="home-glow" aria-hidden />
 
-      <p className="home-kicker">GEOMANIA 60s</p>
       <h1 className="home-brand">Mappix</h1>
       <p className="home-tagline">{copy.tagline}</p>
 
