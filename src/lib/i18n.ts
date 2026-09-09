@@ -9,6 +9,9 @@ export function getStoredLocale(): Locale {
 
 export function setStoredLocale(locale: Locale) {
   localStorage.setItem(LANG_KEY, locale)
+  window.dispatchEvent(
+    new CustomEvent('mappix-locale-change', { detail: { locale } }),
+  )
 }
 
 export const messages = {

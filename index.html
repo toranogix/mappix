@@ -4,7 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Mappix - Devine le pays !</title>
+    <script>
+      (function() {
+        const TITLES = {
+          fr: "Mappix - Devine le pays !",
+          en: "Mappix - Guess the country!"
+        };
+        const LANG_KEY = "mappix-locale";
+        function getLocale() {
+          try {
+            const stored = localStorage.getItem(LANG_KEY);
+            if (stored === "fr" || stored === "en") return stored;
+          } catch {}
+          return "fr";
+        }
+        function setTitleForLocale(locale) {
+          document.title = TITLES[locale] || TITLES.fr;
+        }
+        setTitleForLocale(getLocale());
+        window.addEventListener("mappix-locale-change", function(e) {
+          const newLocale = e?.detail?.locale || getLocale();
+          setTitleForLocale(newLocale);
+        });
+        window.addEventListener("storage", function(e) {
+          if (e.key === LANG_KEY) setTitleForLocale(getLocale());
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
